@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HanRin_SLS | Beauty Store</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #34445d;
+  background:
+    radial-gradient(circle at 10% 10%, #fff 0, transparent 25%),
+    linear-gradient(135deg, #edf3fa, #f9f3f0, #e8eef6);
+}
+
+:root {
+  --navy: #304b70;
+  --blue: #7898bb;
+  --lightblue: #dce8f4;
+  --silver: #edf1f6;
+  --peach: #e9a77f;
+  --darkpeach: #d88d64;
+}
+
+.serif {
+  font-family: 'Playfair Display', serif;
+}
+
+.navbar {
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.brand {
+  background: linear-gradient(120deg, #304b70, #7798bd, #e9a77f);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(255,255,255,.35), transparent 20%),
+    linear-gradient(120deg, #304b70 0%, #6586ad 55%, #d99a79 100%);
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  box-shadow: 0 18px 45px rgba(48,75,112,.2);
+}
+
+.hero::before {
+  content: "✿";
+  position: absolute;
+  right: 7%;
+  top: -55px;
+  font-size: 230px;
+  color: rgba(255,255,255,.12);
+}
+
+.hero::after {
+  content: "୨୧";
+  position: absolute;
+  right: 8%;
+  bottom: 5px;
+  font-size: 100px;
+  color: rgba(255,255,255,.25);
+  transform: rotate(-15deg);
+}
+
+.decor {
+  position: absolute;
+  pointer-events: none;
+  opacity: .65;
+}
+
+.ribbon {
+  color: #e9a77f;
+  font-size: 42px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--navy);
+}
+
+.category-card {
+  background: rgba(255,255,255,.8);
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 18px 12px;
+  text-align: center;
+  box-shadow: 0 5px 18px rgba(48,75,112,.06);
+  transition: .25s;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  background: white;
+  box-shadow: 0 12px 25px rgba(48,75,112,.12);
+}
+
+.product-card {
+  background: rgba(255,255,255,.94);
+  border: 1px solid #e7edf4;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 7px 22px rgba(48,75,112,.07);
+  transition: .3s;
+}
+
+.product-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 35px rgba(48,75,112,.14);
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: linear-gradient(135deg,#e7edf5,#f8e9e1);
+}
+
+.btn-main {
+  background: linear-gradient(120deg,#304b70,#7898bb);
+  color: white;
+  transition: .2s;
+}
+
+.btn-main:hover {
+  background: linear-gradient(120deg,#243b5a,#5d7fa7);
+  transform: scale(1.02);
+}
+
+.btn-peach {
+  background: var(--peach);
+  color: white;
+}
+
+.btn-peach:hover {
+  background: var(--darkpeach);
+}
+
+.promo-box {
+  background: linear-gradient(120deg,#f7e9e1,#e5edf6);
+  border: 1px solid white;
+  border-radius: 25px;
+}
+
+.footer {
+  background: #304b70;
+  color: #eaf0f7;
+}
+
+input, select, textarea {
+  font-family: 'Poppins', sans-serif;
+}
+
+.cart-drawer {
+  animation: slideIn .3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@media(max-width:640px) {
+  .hero::before {
+    font-size: 130px;
+    right: -15px;
+  }
+  .product-image {
+    height: 190px;
+  }
+}
+</style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+<!-- NAVBAR -->
+<header class="navbar sticky top-0 z-30">
+  <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
+
+    <a href="#" class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
+           style="background:#e7edf5">🦋</div>
+      <div>
+        <h1 class="brand serif text-2xl font-bold">HanRin_SLS</h1>
+        <p class="text-[9px] tracking-[.35em] text-slate-400 uppercase">
+          Beauty & Cosmetics
+        </p>
+      </div>
+    </a>
+
+    <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-500">
+      <a href="#" class="hover:text-blue-700">Home</a>
+      <a href="#kategori" class="hover:text-blue-700">Kategori</a>
+      <a href="#produk" class="hover:text-blue-700">Produk</a>
+      <a href="#about" class="hover:text-blue-700">Tentang Kami</a>
+    </nav>
+
+    <button onclick="toggleCart()"
+      class="relative rounded-full px-5 py-3 btn-main shadow-lg">
+      🛒 <span class="hidden sm:inline">Keranjang</span>
+      <span id="cart-count"
+        class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold">
+        0
+      </span>
+    </button>
+
+  </div>
+</header>
+
+
+<main class="max-w-7xl mx-auto px-5 py-8 flex-1 w-full">
+
+<!-- HERO BANNER -->
+<section class="hero p-8 md:p-14 mb-12 text-white">
+
+  <div class="relative z-10 max-w-2xl">
+    <div class="inline-flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 text-xs mb-6 backdrop-blur">
+      ✨ YOUR BEAUTY, YOUR STYLE
+    </div>
+
+    <h2 class="serif text-4xl md:text-6xl font-bold leading-tight mb-5">
+      Discover Your <br>
+      Own Kind of Beauty.
+    </h2>
+
+    <p class="text-sm md:text-base text-white/90 max-w-lg leading-7 mb-8">
+      Temukan koleksi makeup dan perlengkapan kecantikan pilihan.
+      Karena setiap perempuan memiliki pesona dan keindahannya sendiri.
+    </p>
+
+    <a href="#produk"
+      class="inline-block bg-white text-slate-700 rounded-full px-7 py-3 text-sm font-semibold shadow-lg hover:bg-slate-100 transition">
+      Explore Collection ✧
+    </a>
+
+    <div class="mt-8 flex gap-5 text-xs text-white/80">
+      <span>♡ Beauty</span>
+      <span>♡ Confidence</span>
+      <span>♡ Elegance</span>
+    </div>
+  </div>
+
+  <div class="absolute right-10 bottom-8 text-7xl md:text-9xl opacity-40">
+    🎀
+  </div>
+
+  <div class="absolute right-28 top-10 text-4xl opacity-50">✧</div>
+  <div class="absolute right-12 top-28 text-3xl opacity-50">🦋</div>
+
+</section>
+
+
+<!-- KATEGORI -->
+<section id="kategori" class="mb-14">
+
+  <div class="text-center mb-8">
+    <p class="text-xs tracking-[.3em] uppercase mb-2" style="color:var(--darkpeach)">
+      Find Your Favorites
+    </p>
+    <h2 class="section-title text-3xl md:text-4xl font-bold">
+      Shop By Category
+    </h2>
+    <p class="text-sm text-slate-400 mt-2">
+      Pilih kategori kecantikan favoritmu.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+
+    <button class="category-card" onclick="selectCategory('Makeup Bibir')">
+      <div class="text-4xl mb-3">💄</div>
+      <p class="font-semibold text-sm">Makeup Bibir</p>
+      <p class="text-xs text-slate-400 mt-1">Lip collection</p>
+    </button>
+
+    <button class="category-card" onclick="selectCategory('Makeup Wajah')">
+      <div class="text-4xl mb-3">🪞</div>
+      <p class="font-semibold text-sm">Makeup Wajah</p>
+      <p class="text-xs text-slate-400 mt-1">Face collection</p>
+    </button>
+
+    <button class="category-card" onclick="selectCategory('Makeup Mata')">
+      <div class="text-4xl mb-3">👁️</div>
+      <p class="font-semibold text-sm">Makeup Mata</p>
+      <p class="text-xs text-slate-400 mt-1">Eye collection</p>
+    </button>
+
+    <button class="category-card" onclick="selectCategory('Alat Makeup')">
+      <div class="text-4xl mb-3">🖌️</div>
+      <p class="font-semibold text-sm">Alat Makeup</p>
+      <p class="text-xs text-slate-400 mt-1">Beauty tools</p>
+    </button>
+
+    <button class="category-card" onclick="selectCategory('Perawatan Wajah')">
+      <div class="text-4xl mb-3">🧴</div>
+      <p class="font-semibold text-sm">Perawatan</p>
+      <p class="text-xs text-slate-400 mt-1">Skin care</p>
+    </button>
+
+  </div>
+</section>
+
+
+<!-- PROMO -->
+<section class="promo-box p-7 md:p-9 mb-14 flex flex-col md:flex-row items-center justify-between gap-5">
+
+  <div>
+    <p class="text-xs tracking-[.25em] uppercase mb-2" style="color:var(--darkpeach)">
+      A Little Reminder
+    </p>
+    <h2 class="section-title text-2xl md:text-3xl font-bold">
+      You Are Beautiful, Always.
+    </h2>
+    <p class="text-sm text-slate-500 mt-2">
+      Rawat dirimu, cintai dirimu, dan tampil percaya diri setiap hari.
+    </p>
+  </div>
+
+  <div class="text-6xl">🌷🎀</div>
+
+</section>
+
+
+<!-- PRODUK -->
+<section id="produk" class="mb-16">
+
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8">
+
+    <div>
+      <p class="text-xs tracking-[.3em] uppercase mb-2" style="color:var(--darkpeach)">
+        The Beauty Edit
+      </p>
+      <h2 class="section-title text-3xl md:text-4xl font-bold">
+        Our Collection
+      </h2>
+      <p class="text-sm text-slate-400 mt-2">
+        Temukan produk pilihan dari HanRin_SLS.
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3">
+      <input
+        id="product-search"
+        type="search"
+        oninput="renderProducts()"
+        placeholder="Cari produk..."
+        class="bg-white border border-slate-200 rounded-full px-5 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-200"
+      >
+
+      <select
+        id="category-filter"
+        onchange="renderProducts()"
+        class="bg-white border border-slate-200 rounded-full px-5 py-3 text-sm outline-none"
+      >
+        <option value="Semua">Semua Kategori</option>
+        <option value="Makeup Wajah">Makeup Wajah</option>
+        <option value="Makeup Bibir">Makeup Bibir</option>
+        <option value="Makeup Mata">Makeup Mata</option>
+        <option value="Alat Makeup">Alat Makeup</option>
+        <option value="Perawatan Wajah">Perawatan Wajah</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div id="product-loading" class="text-center py-16 text-slate-400">
+    <div class="text-4xl mb-3 animate-pulse">🦋</div>
+    <p class="font-medium">Preparing your beauty collection...</p>
+  </div>
+
+  <div id="product-grid"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
+  </div>
+
+  <p id="empty-state" class="hidden text-center py-12 text-slate-400">
+    Produk tidak ditemukan.
+  </p>
+
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="rounded-3xl p-8 md:p-12 text-center mb-8"
+  style="background:linear-gradient(135deg,#dce7f2,#f5e6df)">
+
+  <div class="text-4xl mb-4">🦋</div>
+
+  <h2 class="section-title text-3xl font-bold mb-4">
+    About HanRin_SLS
+  </h2>
+
+  <p class="max-w-2xl mx-auto text-sm text-slate-600 leading-7">
+    HanRin_SLS Beauty Store hadir untuk menemani kebutuhan kecantikanmu.
+    Kami menyediakan berbagai pilihan produk makeup dan perlengkapan
+    kecantikan untuk membantu kamu tampil lebih percaya diri.
+  </p>
+
+  <p class="serif italic text-xl mt-5" style="color:var(--navy)">
+    "Beauty begins with loving yourself."
+  </p>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer mt-auto">
+  <div class="max-w-7xl mx-auto px-5 py-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <div>
+        <h2 class="serif text-2xl font-bold mb-3">HanRin_SLS 🎀</h2>
+        <p class="text-xs text-slate-300 leading-6">
+          Your little beauty destination. <br>
+          Look Good, Feel Good, Be You.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-3">Quick Links</h3>
+        <div class="flex flex-col gap-2 text-xs text-slate-300">
+          <a href="#">Home</a>
+          <a href="#kategori">Kategori</a>
+          <a href="#produk">Katalog Produk</a>
+          <a href="#about">Tentang Kami</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-3">Our Motto</h3>
+        <p class="text-xs text-slate-300 leading-6">
+          Celebrate your beauty. <br>
+          Embrace your confidence. <br>
+          Be uniquely you. ♡
+        </p>
+      </div>
+
+    </div>
+
+    <div class="border-t border-white/20 mt-8 pt-5 text-center text-xs text-slate-300">
+      © 2026 HanRin_SLS Beauty Store. All Rights Reserved.
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- CART DRAWER -->
+<div id="cart-modal"
+  class="fixed inset-0 bg-black/50 z-50 hidden justify-end">
+
+  <div class="cart-drawer bg-white w-full max-w-md h-full flex flex-col p-6 shadow-2xl overflow-y-auto">
+
+    <div class="flex justify-between items-center pb-5 border-b">
+      <div>
+        <p class="text-xs tracking-widest uppercase text-slate-400">Your Selection</p>
+        <h3 class="section-title text-2xl font-bold">Shopping Bag 🛍️</h3>
+      </div>
+
+      <button onclick="toggleCart()" class="text-3xl text-slate-400">
+        &times;
+      </button>
+    </div>
+
+    <div id="cart-items" class="flex-1 py-5 space-y-3">
+      <p class="text-sm text-slate-400 text-center py-8">
+        Keranjang masih kosong.
+      </p>
+    </div>
+
+    <div class="border-t pt-5 space-y-4">
+
+      <div class="flex justify-between font-bold text-lg">
+        <span>Total Pembayaran</span>
+        <span id="cart-total" style="color:var(--blue)">Rp 0</span>
+      </div>
+
+      <form id="checkout-form" onsubmit="handleCheckout(event)" class="space-y-3">
+
+        <input
+          type="text"
+          id="cust-name"
+          required
+          placeholder="Nama lengkap"
+          class="w-full border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-200"
+        >
+
+        <input
+          type="tel"
+          id="cust-phone"
+          required
+          placeholder="Nomor WhatsApp"
+          class="w-full border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-200"
+        >
+
+        <textarea
+          id="cust-address"
+          required
+          rows="2"
+          placeholder="Alamat lengkap pengiriman"
+          class="w-full border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-blue-200"
+        ></textarea>
+
+        <button
+          type="submit"
+          id="btn-submit"
+          class="btn-main w-full py-4 rounded-xl font-bold shadow-lg"
+        >
+          Checkout via WhatsApp 📲
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+// KONFIGURASI GOOGLE SHEETS DAN WHATSAPP
+const API_URL = "https://script.google.com/macros/s/AKfycbz2I0cZNtFle2XXcmXXcrMS88GCw_Jqd1vjITtNCogxz6BfPCf2yLhBmtKBEVnWJeoWUQ/exec";
+const WA_ADMIN = "6287814185830";
+
+let products = [];
+let cart = [];
+
+const rupiah = value =>
+  Number(value || 0).toLocaleString("id-ID");
+
+
+// MEMUAT PRODUK
+async function loadProducts() {
+
+  const loading = document.getElementById("product-loading");
+
+  try {
+
+    if (API_URL.includes("MASUKKAN_URL")) {
+      throw new Error("URL API belum diisi");
+    }
+
+    const response = await fetch(API_URL);
+    const json = await response.json();
+
+    if (!Array.isArray(json.data)) {
+      throw new Error("Data produk tidak sesuai");
+    }
+
+    products = json.data;
+
+    renderProducts();
+
+    loading.classList.add("hidden");
+
+    document.getElementById("product-grid").classList.remove("hidden");
+
+  } catch (error) {
+
+    loading.innerHTML = `
+      <div class="bg-white rounded-2xl p-8 max-w-md mx-auto shadow-sm">
+        <div class="text-4xl mb-3">🦋</div>
+        <h3 class="font-bold text-slate-700">
+          Katalog belum tersedia
+        </h3>
+        <p class="text-xs text-slate-400 mt-2">
+          Periksa URL Google Apps Script dan koneksi database.
+        </p>
+      </div>
+    `;
+
+    console.error(error);
+  }
+}
+
+
+// FILTER KATEGORI
+function selectCategory(category) {
+
+  document.getElementById("category-filter").value = category;
+
+  renderProducts();
+
+  document.getElementById("produk").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+// MENAMPILKAN PRODUK
+function renderProducts() {
+
+  const grid = document.getElementById("product-grid");
+
+  const search =
+    document.getElementById("product-search").value.toLowerCase();
+
+  const category =
+    document.getElementById("category-filter").value;
+
+  const filtered = products.filter(p => {
+
+    const matchSearch =
+      (p.nama || "").toLowerCase().includes(search);
+
+    const matchCategory =
+      category === "Semua" || p.kategori === category;
+
+    return matchSearch && matchCategory;
+  });
+
+  grid.innerHTML = "";
+
+  document.getElementById("empty-state").classList.toggle(
+    "hidden",
+    filtered.length > 0
+  );
+
+  filtered.forEach(p => {
+
+    const card = document.createElement("article");
+
+    card.className = "product-card flex flex-col";
+
+    const image = document.createElement("img");
+
+    image.src = p.foto ||
+      "https://via.placeholder.com/500x400?text=HanRin+Beauty";
+
+    image.alt = p.nama || "Produk HanRin";
+
+    image.className = "product-image";
+
+    image.onerror = () => {
+      image.src = "https://via.placeholder.com/500x400?text=Beauty+Product";
+    };
+
+    const content = document.createElement("div");
+
+    content.className = "p-5 flex-1 flex flex-col justify-between";
+
+    const details = document.createElement("div");
+
+    const tag = document.createElement("span");
+
+    tag.className =
+      "text-[10px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full";
+
+    tag.style.background = "#eaf0f7";
+
+    tag.style.color = "#557da8";
+
+    tag.textContent = p.kategori || "Beauty";
+
+    const title = document.createElement("h3");
+
+    title.className = "font-semibold text-slate-800 mt-3 text-lg";
+
+    title.textContent = p.nama || "Beauty Product";
+
+    const description = document.createElement("p");
+
+    description.className =
+      "text-xs text-slate-400 mt-2 leading-5";
+
+    description.textContent =
+      p.deskripsi || "Produk pilihan HanRin_SLS Beauty Store.";
+
+    const stock = document.createElement("p");
+
+    stock.className = "text-xs text-slate-400 mt-2";
+
+    stock.textContent = "Stok tersedia: " + Number(p.stok || 0);
+
+    details.append(tag, title, description, stock);
+
+    const bottom = document.createElement("div");
+
+    bottom.className =
+      "mt-5 pt-4 border-t border-slate-100 flex items-center justify-between gap-2";
+
+    const price = document.createElement("span");
+
+    price.className = "font-bold text-sm";
+
+    price.style.color = "#557da8";
+
+    price.textContent = "Rp " + rupiah(p.harga);
+
+    const button = document.createElement("button");
+
+    button.className =
+      "btn-main text-xs font-semibold px-4 py-2.5 rounded-full";
+
+    button.textContent = "+ Keranjang";
+
+    button.disabled = Number(p.stok || 0) <= 0;
+
+    button.onclick = () => addToCart(p.id);
+
+    bottom.append(price, button);
+
+    content.append(details, bottom);
+
+    card.append(image, content);
+
+    grid.appendChild(card);
+
+  });
+
+  grid.classList.remove("hidden");
+}
+
+
+// TAMBAH KERANJANG
+function addToCart(id) {
+
+  const product = products.find(p => String(p.id) === String(id));
+
+  if (!product) return;
+
+  const existing = cart.find(
+    item => String(item.id) === String(id)
+  );
+
+  const quantity = existing ? existing.qty : 0;
+
+  if (quantity >= Number(product.stok || 0)) {
+    alert("Stok produk tidak mencukupi.");
+    return;
+  }
+
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({
+      ...product,
+      qty: 1
+    });
+  }
+
+  updateCartUI();
+}
+
+
+// UPDATE KERANJANG
+function updateCartUI() {
+
+  document.getElementById("cart-count").innerText =
+    cart.reduce((sum, item) => sum + item.qty, 0);
+
+  const container = document.getElementById("cart-items");
+
+  container.innerHTML = "";
+
+  let total = 0;
+
+  if (cart.length === 0) {
+
+    container.innerHTML = `
+      <p class="text-sm text-slate-400 text-center py-8">
+        Keranjang masih kosong. ♡
+      </p>
+    `;
+  }
+
+  cart.forEach((item, index) => {
+
+    total += Number(item.harga || 0) * item.qty;
+
+    const row = document.createElement("div");
+
+    row.className =
+      "flex justify-between items-center gap-3 p-4 rounded-2xl border border-slate-100 bg-slate-50";
+
+    const info = document.createElement("div");
+
+    const name = document.createElement("p");
+
+    name.className = "font-semibold text-sm";
+
+    name.textContent = item.nama;
+
+    const detail = document.createElement("p");
+
+    detail.className = "text-xs text-slate-400 mt-1";
+
+    detail.textContent =
+      `Rp ${rupiah(item.harga)} x ${item.qty}`;
+
+    info.append(name, detail);
+
+    const remove = document.createElement("button");
+
+    remove.className = "text-red-400 text-xs font-semibold";
+
+    remove.textContent = "Hapus";
+
+    remove.onclick = () => {
+
+      cart.splice(index, 1);
+
+      updateCartUI();
+    };
+
+    row.append(info, remove);
+
+    container.appendChild(row);
+
+  });
+
+  document.getElementById("cart-total").innerText =
+    "Rp " + rupiah(total);
+}
+
+
+// BUKA KERANJANG
+function toggleCart() {
+
+  const modal = document.getElementById("cart-modal");
+
+  modal.classList.toggle("hidden");
+
+  modal.classList.toggle("flex");
+}
+
+
+// CHECKOUT WHATSAPP
+async function handleCheckout(event) {
+
+  event.preventDefault();
+
+  if (cart.length === 0) {
+    alert("Keranjang masih kosong!");
+    return;
+  }
+
+  if (WA_ADMIN === "6281234567890") {
+    alert("Ganti nomor WhatsApp admin terlebih dahulu.");
+    return;
+  }
+
+  const button = document.getElementById("btn-submit");
+
+  button.disabled = true;
+
+  button.innerText = "Menyiapkan Pesanan...";
+
+  const invoice =
+    "INV-" + Date.now().toString().slice(-6);
+
+  const payload = {
+
+    invoice: invoice,
+
+    nama: document.getElementById("cust-name").value.trim(),
+
+    whatsapp: document.getElementById("cust-phone").value.trim(),
+
+    alamat: document.getElementById("cust-address").value.trim(),
+
+    items: cart.map(item => ({
+      id: item.id,
+      nama: item.nama,
+      harga: Number(item.harga || 0),
+      qty: item.qty
+    })),
+
+    total: cart.reduce(
+      (sum, item) =>
+        sum + Number(item.harga || 0) * item.qty,
+      0
+    )
+  };
+
+  try {
+
+    // KIRIM PESANAN KE GOOGLE SHEETS
+    if (!API_URL.includes("MASUKKAN_URL")) {
+
+      fetch(API_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      }).catch(console.error);
+    }
+
+    // SUSUN PESAN WHATSAPP
+    let message =
+      `Halo Admin HanRin_SLS, saya ingin memesan produk:\n\n`;
+
+    message += `🧾 *Invoice:* ${invoice}\n`;
+
+    message += `👤 *Nama:* ${payload.nama}\n`;
+
+    message += `📱 *WhatsApp:* ${payload.whatsapp}\n`;
+
+    message += `📍 *Alamat:* ${payload.alamat}\n\n`;
+
+    message += `🎀 *Daftar Belanja:*\n`;
+
+    payload.items.forEach(item => {
+
+      message +=
+        `• ${item.nama} (${item.qty}x) = Rp ${(item.harga * item.qty).toLocaleString("id-ID")}\n`;
+
+    });
+
+    message +=
+      `\n💰 *Total: Rp ${payload.total.toLocaleString("id-ID")}*\n\n`;
+
+    message +=
+      "Mohon konfirmasi pesanan dan ongkos kirim. Terima kasih! ♡";
+
+    // BUKA WHATSAPP
+    window.open(
+      `https://wa.me/${WA_ADMIN}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+
+    cart = [];
+
+    updateCartUI();
+
+    toggleCart();
+
+    event.target.reset();
+
+  } catch (error) {
+
+    alert("Gagal menyiapkan pesanan.");
+
+    console.error(error);
+
+  } finally {
+
+    button.disabled = false;
+
+    button.innerText = "Checkout via WhatsApp 📲";
+  }
+}
+
+
+// JALANKAN WEBSITE
+loadProducts();
+
+</script>
+
+</body>
+</html>
